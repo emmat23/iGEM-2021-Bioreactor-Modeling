@@ -24,7 +24,7 @@
 td = 20; %doubling time is 20 minutes
 u = findGrowth(td);
 
-Ni = 100; %number of cells
+Ni = 1000000; %number of cells
 t_n = linspace(0,60,85); %minutes
 N = ecoliGrowth(u,t_n,Ni); %number of cells at time t
 
@@ -42,16 +42,16 @@ dNdt = monodModel(x,fmax,u);
 n = length(dNdt);
 
 for i = 1:n
-    K = carry_cap(dNdt(i),u,N(i));
+    K = carry_cap(dNdt(i),u,N(i)); %cells/L
 end
-% 
+
 %Plot Growth Rate
 
 figure
 plot(t, N,'b-')
-ylim([0 900]);
+ylim([0 9000000]);
 hold on
-yline(K,'r-', 'Carrying Capacity: 800')
+yline(K,'r-', K)
 hold off
 title('Growth Rate of E.Coli')
 xlabel('Time (min)')
